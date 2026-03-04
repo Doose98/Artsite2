@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtSite – Gallery</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<header>
+    <img src="logo2.png" width="200" height="150" alt="ArtSite Logo" id="logo2">
+    <h1>ArtSite Gallery</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+         <li><a href="about.html">About</a></li>
+         <li><a href="work.html" class="active">Work</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<section id="work">
+
+    <h2>My Work</h2>
+
+    <!-- Tabs -->
+    <div class="work-tabs">
+        <button class="tab-btn active" onclick="showTab('images')">
+            Images
+        </button>
+
+        <button class="tab-btn" onclick="showTab('videos')">
+            Videos
+        </button>
+    </div>
+
+    <!-- IMAGE TAB -->
+    <div id="images" class="tab-content active">
+
+        <div class="work-grid">
+            <img src="space.png">
+            <img src="hi.png">
+            <img src="aura.png">
+            <img src="city.png">
+        </div>
+
+    </div>
+
+    <!-- VIDEO TAB -->
+    <div id="videos" class="tab-content">
+
+        <div class="video-grid">
+            <video class="work-video" controls src="frcture.mp4"></video>
+            <video class="work-video" controls src="girl.mp4"></video>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Lightbox Container -->
+<div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img">
+</div>
+
+<footer>
+    <p>© 2025 ArtSite | Gallery Page</p>
+</footer>
+<script>
+function openLightbox(image) {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    lightbox.style.display = "flex";
+    lightboxImg.src = image.src;
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+</script>
+<script>
+function showTab(tab) {
+
+    // hide tabs
+    document.querySelectorAll(".tab-content")
+        .forEach(t => t.classList.remove("active"));
+
+    document.querySelectorAll(".tab-btn")
+        .forEach(b => b.classList.remove("active"));
+
+    document.getElementById(tab)
+        .classList.add("active");
+
+    event.target.classList.add("active");
+
+    /* STOP all videos */
+    document.querySelectorAll(".work-video")
+        .forEach(video => {
+            video.pause();
+            video.currentTime = 0;
+        });
+
+    /* PLAY videos when video tab opens */
+    if (tab === "videos") {
+        document.querySelectorAll(".work-video")
+            .forEach(video => video.play());
+    }
+}
+</script>
+</script>
+</body>
+</html>

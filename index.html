@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtSite – Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<header>
+    <img src="logo2.png" width="200" height="150" alt="ArtSite Logo" id="logo">
+    <h1>ArtSite</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<section id="intro">
+    <h2>Welcome to ArtSite</h2>
+
+<section id="hero-gallery">
+    <div class="side left">
+        <img src="land3.png" alt="Side Art 1">
+        <img src="land2.png" alt="Side Art 2">
+    </div>
+
+    <div class="center">
+        <img src="main.jpg" width="500" height="200" alt="Main Featured Art">
+    </div>
+
+    <div class="side right">
+        <img src="drones.png" alt="Side Art 3">
+        <img src="smoking.png" alt="Side Art 4">
+    </div>
+</section>
+    <h2>What You Can Do on ArtSite</h2>
+
+    <h3>Popular Features (unordered list)</h3>
+    <ul>
+        <li>Browse curated art collections</li>
+        <li>Learn digital painting techniques</li>
+        <li>Watch artist tutorials</li>
+    </ul>
+
+    <h3>Top Tools for Artists (ordered list)</h3>
+    <ol>
+        <li>Graphic tablets</li>
+        <li>Digital brushes</li>
+        <li>Color-palette generators</li>
+    </ol>
+</section>
+
+<section id="table-section">
+    <h2>Recommended Art Software</h2>
+    <table>
+        <tr>
+            <th>Software</th>
+            <th>Type</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>GIMP</td>
+            <td>Image Editing</td>
+            <td>Free</td>
+        </tr>
+        <tr>
+            <td>Krita</td>
+            <td>Digital Painting</td>
+            <td>Free</td>
+        </tr>
+        <tr>
+            <td>Adobe Photoshop</td>
+            <td>Professional Editing</td>
+            <td>Paid</td>
+        </tr>
+    </table>
+</section>
+
+
+<footer>
+    <footer>
+
+    <div class="social-links">
+        <a href="https://instagram.com/YOURUSERNAME" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="https://twitter.com/YOURUSERNAME" target="_blank">
+            <i class="fab fa-twitter"></i>
+        </a>
+
+        <a href="https://www.youtube.com/@delirious9882" target="_blank">
+            <i class="fab fa-youtube"></i>
+        </a>
+
+        <a href="https://www.tiktok.com/@doose.zoose" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+    </div>
+
+    <p>© 2025 ArtSite | Portfolio</p>
+
+</footer>
+    
+<script>
+    const images = ["land1.jpg", "land2.png", "land3.png"];
+    let index = 0;
+    const slideshow = document.getElementById("slideshow");
+
+    setInterval(() => {
+        slideshow.style.opacity = 0;
+
+        setTimeout(() => {
+            index = (index + 1) % images.length;
+            slideshow.src = images[index];
+            slideshow.style.opacity = 1;
+        }, 400);
+
+    }, 3000);
+</script>
+</body>
+</html>
