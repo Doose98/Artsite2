@@ -11,7 +11,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 </head>
 
 <body>
-
+<div class="moon"></div>
+<div class="shooting-stars">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
 <header>
     <img src="logo2.png" width="200" height="150" alt="ArtSite Logo" id="logo">
     <h1>ArtSite</h1>
@@ -31,20 +36,20 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <section id="hero-gallery">
     <div class="side left">
-        <img src="land3.png" alt="Side Art 1">
-        <img src="land2.png" alt="Side Art 2">
+        <img src="land3.png" onclick="openLightbox(this.src)">
+        <img src="land2.png" onclick="openLightbox(this.src)">
     </div>
 
     <div class="center">
-        <img src="main.jpg" width="500" height="200" alt="Main Featured Art">
+        <img src="main.jpg" width="500" height="200" onclick="openLightbox(this.src)">
     </div>
 
     <div class="side right">
-        <img src="drones.png" alt="Side Art 3">
-        <img src="smoking.png" alt="Side Art 4">
+        <img src="drones.png" onclick="openLightbox(this.src)">
+        <img src="smoking.png" onclick="openLightbox(this.src)">
     </div>
 </section>
-    <h2>What You Can Do on ArtSite</h2>
+   
 
     <h3>Popular Features (unordered list)</h3>
     <ul>
@@ -109,7 +114,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         </a>
     </div>
 
-    <p>© 2025 ArtSite | Portfolio</p>
+    <p>© 2026 ArtSite | Portfolio</p>
 
 </footer>
     
@@ -129,5 +134,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
     }, 3000);
 </script>
+<div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img">
+</div>
+<script>
+function openLightbox(src) {
+    document.getElementById("lightbox").style.display = "flex";
+    document.getElementById("lightbox-img").src = src;
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").style.display = "none";
+}
+</script>
+
+</body>
+</html>
+
 </body>
 </html>
