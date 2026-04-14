@@ -6,11 +6,32 @@
 }
 
 html, body {
-    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(
+        135deg,
+        #581379,
+        #0e1933,
+        #7fa2e3
+    );
+
     color: #ffffff;
-    background: #6d8ed6;
-    font-size: 18px;
-    line-height: 1.7;
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: radial-gradient(
+        circle at 20% 20%,
+        rgba(255,255,255,0.08),
+        transparent 40%
+    ),
+    radial-gradient(
+        circle at 80% 80%,
+        rgba(255,255,255,0.05),
+        transparent 40%
+    );
+
+    pointer-events: none;
 }
 a {
     text-decoration: none;
@@ -23,58 +44,172 @@ img {
 }
 
 /* Header */
+header * {
+    position: relative;
+    z-index: 1;
+}
 header {
+    position: relative;   /* ⭐ REQUIRED */
+ overflow: hidden; 
+    background: #2f2f2f;
+    color: #f5f5f5;
+
+    padding: 40px 20px 25px;
+
     display: flex;
-    flex-direction: column;   /* stack logo + title */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px 25px;
-    text-align: center;
-    background: #fff;
 }
-
 header h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #111;   /* FIX */
-}
-h1 {
-    font-size: 3.5rem;
-    letter-spacing: 2px;
-}
-
-h2 {
-    font-size: 2.4rem;
-    margin-bottom: 20px;
-}
-
-h3 {
-    font-size: 1.6rem;
-}
-h1, h2, h3 {
+    font-size: 2.8rem;
     font-weight: 600;
+    letter-spacing: 2px;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,0.3),
+        0 0 15px rgba(255,255,255,0.2);
+
+    transition: 0.3s ease;
 }
+
+header h1:hover {
+    text-shadow:
+        0 0 12px rgba(255,255,255,0.5),
+        0 0 25px rgba(255,255,255,0.3);
+}
+/* 🌙 MOVING MOON */
+.moon {
+    position: fixed;
+
+    top: 80px;
+    right: 100px;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        #ffffff 0%,
+        #e6e6e6 40%,
+        rgba(255,255,255,0.3) 60%,
+        transparent 80%
+    );
+
+    box-shadow:
+        0 0 40px rgba(255,255,255,0.4),
+        0 0 80px rgba(255,255,255,0.2);
+
+    z-index: -1;
+
+    animation: moveMoon 40s linear infinite;
+}
+@keyframes moveMoon {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(-200px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+header * {
+    position: relative;
+    z-index: 1;
+}
+header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+    radial-gradient(circle at 15% 60%, rgba(255,255,255,0.5) 1px, transparent 2px),
+radial-gradient(circle at 65% 25%, rgba(255,255,255,0.5) 1px, transparent 2px),
+radial-gradient(circle at 40% 85%, rgba(255,255,255,0.4) 1px, transparent 2px),
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.6) 1px, transparent 2px),
+        radial-gradient(circle at 30% 70%, rgba(255,255,255,0.5) 1px, transparent 2px),
+        radial-gradient(circle at 50% 40%, rgba(255,255,255,0.4) 1px, transparent 2px),
+        radial-gradient(circle at 70% 80%, rgba(255,255,255,0.6) 1px, transparent 2px),
+        radial-gradient(circle at 90% 10%, rgba(255,255,255,0.5) 1px, transparent 2px),
+        radial-gradient(circle at 20% 90%, rgba(255,255,255,0.4) 1px, transparent 2px),
+        radial-gradient(circle at 80% 50%, rgba(255,255,255,0.6) 1px, transparent 2px);
+
+    opacity: 0.4;
+
+    z-index: 0;
+    pointer-events: none;
+}
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+header::before {
+    animation: twinkle 4s infinite ease-in-out;
+}
+/* 🌙 MOON */
+header::after {
+    content: "";
+    position: absolute;
+
+    top: 20px;
+    right: 80px;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        #ffffff 0%,
+        #e6e6e6 40%,
+        rgba(255,255,255,0.3) 60%,
+        rgba(255,255,255,0.1) 70%,
+        transparent 80%
+    );
+
+    box-shadow:
+        0 0 40px rgba(255,255,255,0.4),
+        0 0 80px rgba(255,255,255,0.2);
+
+    z-index: 0;
+}@keyframes moonGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 40px rgba(255,255,255,0.4),
+            0 0 80px rgba(255,255,255,0.2);
+    }
+    50% {
+        box-shadow:
+            0 0 60px rgba(255,255,255,0.6),
+            0 0 120px rgba(255,255,255,0.3);
+    }
+}
+
+header::after {
+    animation: moonGlow 6s ease-in-out infinite;
+}
+
 /* Navigation Bar */
 nav {
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    padding: 20px 0;
-}
-
-nav ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    gap: 50px; /* more spacing between tabs */
+    background: #2f2f2f;
 }
 
 nav ul li a {
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    color: #111;
+    color: #ccc;
+    font-weight: 500;
+    transition: 0.3s;
+}
+nav ul li a:hover {
+    color: #fff;
+    text-shadow: 0 0 6px rgba(255,255,255,0.4);
 }
 /* Smooth underline animation */
 nav ul li a::after {
@@ -787,4 +922,180 @@ section {
 .social-links a:hover {
     transform: translateY(-5px) scale(1.2);
     color: #000;
+}
+/* CLICKABLE IMAGE EFFECT */
+img {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.03);
+}
+#lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.95);
+
+    justify-content: center;
+    align-items: center;
+
+    animation: fadeIn 0.3s ease;
+}
+
+#lightbox-img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+section {
+    border: none !important;
+}
+
+hr {
+    display: none;
+}
+/* REMOVE RANDOM LINES BETWEEN SECTIONS */
+section {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+body {
+    overflow-x: hidden;
+}
+.social-feed {
+    width: 100%;
+    margin: 40px auto;
+}
+
+header {
+    position: relative;   /* ← FIX: no more movement */
+   
+
+    padding: 30px 20px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    
+}
+header h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    transition: letter-spacing 0.3s ease, transform 0.3s ease;
+}
+
+header h1:hover {
+    letter-spacing: 4px;
+    transform: scale(1.05);
+}
+nav ul li a {
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #000;
+    transform: translateY(-2px);
+}
+@keyframes headerFade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+header {
+    animation: headerFade 1s ease;
+}
+img {
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+/* ===============================
+   SHOOTING STARS
+================================ */
+
+.shooting-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* EACH STAR */
+.shooting-stars span {
+    position: absolute;
+    width: 2px;
+    height: 80px;
+
+    background: linear-gradient(
+        -45deg,
+        white,
+        rgba(255,255,255,0)
+    );
+
+    opacity: 0;
+    transform: rotate(45deg);
+
+    animation: shoot 6s linear infinite;
+}
+
+/* DIFFERENT POSITIONS + TIMING */
+.shooting-stars span:nth-child(1) {
+    top: 20%;
+    left: 80%;
+    animation-delay: 0s;
+}
+
+.shooting-stars span:nth-child(2) {
+    top: 50%;
+    left: 60%;
+    animation-delay: 2s;
+}
+
+.shooting-stars span:nth-child(3) {
+    top: 10%;
+    left: 40%;
+    animation-delay: 4s;
+}
+@keyframes shoot {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) rotate(45deg);
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-200px, 200px) rotate(45deg);
+    }
+}
+@media (max-width: 768px) {
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .center img {
+        width: 100%;
+    }
+}
+#about p {
+    font-size: 1.2rem;   /* bigger text */
+    line-height: 1.8;    /* more spacing between lines */
+    max-width: 800px;   /* keeps it readable */
+    margin: 0 auto;     /* centers it nicely */
 }
