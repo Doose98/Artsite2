@@ -6,15 +6,16 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<div class="moon"></div>
+
+<header>
+    <img src="logo2.png" width="200" height="150" alt="ArtSite Logo" id="logo">
+    <div class="moon"></div>
 <div class="shooting-stars">
     <span></span>
     <span></span>
     <span></span>
 </div>
-<header>
-    <img src="logo2.png" width="200" height="150" alt="ArtSite Logo" id="logo">
-    <h1>ArtSite</h1>
+<h1>ArtSite</h1>
 </header>
 
 <header>
@@ -66,6 +67,28 @@
 <footer>
     <p>© 2026 ArtSite Portfolio</p>
 </footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("fade-in");
 
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function(e) {
+
+            // ignore external links
+            if (this.target === "_blank") return;
+
+            e.preventDefault();
+            const url = this.href;
+
+            document.body.classList.remove("fade-in");
+            document.body.classList.add("fade-out");
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 400); // matches CSS time
+        });
+    });
+});
+</script>
 </body>
 </html>
