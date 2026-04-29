@@ -154,12 +154,14 @@ header::before {
     animation: twinkle 4s infinite ease-in-out;
 }
 /* 🌙 MOON */
-header::after {
-    content: "";
-    position: absolute;
 
-    top: 20px;
-    right: 80px;
+/* ===== SINGLE MOON ===== */
+
+.moon {
+    position: absolute;   /* stays inside header */
+
+    top: 40px;
+    right: 60px;
 
     width: 120px;
     height: 120px;
@@ -169,47 +171,57 @@ header::after {
     background: radial-gradient(
         circle,
         #ffffff 0%,
-        #e6e6e6 40%,
+        #e6e6e6 35%,
         rgba(255,255,255,0.3) 60%,
         rgba(255,255,255,0.1) 70%,
         transparent 80%
     );
 
     box-shadow:
-        0 0 40px rgba(255,255,255,0.4),
-        0 0 80px rgba(255,255,255,0.2);
+        0 0 60px rgba(255,255,255,0.4),
+        0 0 120px rgba(255,255,255,0.2);
 
     z-index: 0;
-}@keyframes moonGlow {
-    0%, 100% {
-        box-shadow:
-            0 0 40px rgba(255,255,255,0.4),
-            0 0 80px rgba(255,255,255,0.2);
-    }
-    50% {
-        box-shadow:
-            0 0 60px rgba(255,255,255,0.6),
-            0 0 120px rgba(255,255,255,0.3);
-    }
 }
 
-header::after {
-    animation: moonGlow 6s ease-in-out infinite;
-}
 
-/* Navigation Bar */
+
+
+/* ===== HEADER NAV TABS BIGGER ===== */
+
+/* ===== BIG NAV ===== */
+
 nav {
-    background: #2f2f2f;
+    padding: 25px 0;   /* taller nav bar */
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 70px;   /* 🔥 more spacing between tabs */
 }
 
 nav ul li a {
-    color: #ccc;
-    font-weight: 500;
-    transition: 0.3s;
+    font-size: 1.8rem;   /* 🔥 MUCH bigger text */
+    font-weight: 600;
+
+    padding: 16px 30px;  /* 🔥 bigger click area */
+
+    color: #ddd;
+
+    border-radius: 10px;
+
+    transition: all 0.3s ease;
 }
 nav ul li a:hover {
     color: #fff;
-    text-shadow: 0 0 6px rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.1);
+
+    transform: translateY(-2px);
+}
+nav ul li a.active {
+    color: #fff;
+    background: rgba(255,255,255,0.2);
 }
 /* Smooth underline animation */
 nav ul li a::after {
@@ -420,28 +432,26 @@ table {
 }
 /* Lightbox Background */
 #lightbox {
-    display: none;
     position: fixed;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    inset: 0;
+
+    display: none;
     justify-content: center;
     align-items: center;
-    cursor: pointer;
-}
 
-/* Expanded Image */
+    z-index: 9999;
+
+    /* ⭐ BLUR EFFECT */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    animation: fadeIn 0.3s ease;
+}
 #lightbox-img {
-    max-width: 90%;
-    max-height: 85%;
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(255,255,255,0.3);
-    animation: zoomIn 0.4s ease;
+    position: absolute;
+    object-fit: contain; /* ⭐ prevents stretching */
 }
-
 /* Zoom Animation */
 @keyframes zoomIn {
     from {
@@ -1098,4 +1108,154 @@ img {
     line-height: 1.8;    /* more spacing between lines */
     max-width: 800px;   /* keeps it readable */
     margin: 0 auto;     /* centers it nicely */
+}
+/* ===== PAGE TRANSITIONS ===== */
+
+body {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* when page loads */
+body.fade-in {
+    opacity: 1;
+}
+
+/* when leaving page */
+body.fade-out {
+    opacity: 0;
+}
+/* ===== STAR BACKGROUND ===== */
+
+header {
+    position: relative;
+    overflow: hidden;
+}
+
+/* SMALL STARS */
+header::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(1.5px 1.5px at 70% 20%, white, transparent),
+        radial-gradient(2px 2px at 40% 80%, white, transparent),
+        radial-gradient(1px 1px at 90% 60%, white, transparent),
+        radial-gradient(2px 2px at 10% 70%, white, transparent),
+        radial-gradient(1.5px 1.5px at 60% 50%, white, transparent),
+        radial-gradient(2px 2px at 30% 10%, white, transparent),
+        radial-gradient(1px 1px at 80% 40%, white, transparent),
+              radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(1.5px 1.5px at 70% 20%, white, transparent),
+        radial-gradient(2px 2px at 40% 80%, white, transparent),
+        radial-gradient(1px 1px at 90% 60%, white, transparent),
+        radial-gradient(2px 2px at 10% 70%, white, transparent),
+        radial-gradient(1.5px 1.5px at 60% 50%, white, transparent),
+        radial-gradient(2px 2px at 30% 10%, white, transparent),
+        radial-gradient(1px 1px at 80% 40%, white, transparent);
+
+    opacity: 0.6;
+    z-index: 0;
+}
+
+/* MORE STARS (SECOND LAYER) */
+header::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(2px 2px at 15% 60%, white, transparent),
+        radial-gradient(1px 1px at 50% 20%, white, transparent),
+        radial-gradient(2px 2px at 75% 75%, white, transparent),
+        radial-gradient(1.5px 1.5px at 35% 45%, white, transparent),
+        radial-gradient(1px 1px at 85% 15%, white, transparent);
+
+    opacity: 0.4;
+    z-index: 0;
+}
+header * {
+    position: relative;
+    z-index: 1;
+}
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    50% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+
+header::before,
+header::after {
+    animation: twinkle 4s infinite ease-in-out;
+}
+/* ===== STAR LAYER (WORKING VERSION) ===== */
+
+header {
+    position: relative;
+    overflow: hidden;
+}
+
+/* STAR BACKGROUND */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 70% 20%, white, transparent),
+        radial-gradient(2px 2px at 40% 80%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(2px 2px at 10% 70%, white, transparent),
+        radial-gradient(2px 2px at 60% 50%, white, transparent),
+        radial-gradient(2px 2px at 30% 10%, white, transparent),
+        radial-gradient(2px 2px at 80% 40%, white, transparent),
+        radial-gradient(2px 2px at 50% 90%, white, transparent),
+        radial-gradient(2px 2px at 15% 50%, white, transparent),
+        radial-gradient (2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 70% 20%, white, transparent),
+        radial-gradient(2px 2px at 40% 80%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(2px 2px at 10% 70%, white, transparent),
+        radial-gradient(2px 2px at 60% 50%, white, transparent),
+        radial-gradient(2px 2px at 30% 10%, white, transparent),
+        radial-gradient(2px 2px at 80% 40%, white, transparent),
+        radial-gradient(2px 2px at 50% 90%, white, transparent),
+        radial-gradient(2px 2px at 15% 50%, white, transparent),
+         radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 70% 20%, white, transparent),
+        radial-gradient(2px 2px at 40% 80%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(2px 2px at 10% 70%, white, transparent),
+        radial-gradient(2px 2px at 60% 50%, white, transparent),
+        radial-gradient(2px 2px at 30% 10%, white, transparent),
+        radial-gradient(2px 2px at 80% 40%, white, transparent),
+        radial-gradient(2px 2px at 50% 90%, white, transparent),
+        radial-gradient(2px 2px at 15% 50%, white, transparent),
+        radial-gradient (2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 70% 20%, white, transparent),
+        radial-gradient(2px 2px at 40% 80%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(2px 2px at 10% 70%, white, transparent),
+        radial-gradient(2px 2px at 60% 50%, white, transparent),
+        radial-gradient(2px 2px at 30% 10%, white, transparent),
+        radial-gradient(2px 2px at 80% 40%, white, transparent),
+        radial-gradient(2px 2px at 50% 90%, white, transparent),
+        radial-gradient(2px 2px at 15% 50%, white, transparent);
+    opacity: 0.7;
+
+    z-index: 0;
+}
+
+/* MAKE CONTENT ABOVE STARS */
+header *:not(.stars) {
+    position: relative;
+    z-index: 1;
 }
