@@ -11,15 +11,16 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 </head>
 
 <body>
-<div class="moon"></div>
-<div class="shooting-stars">
+
+<header>
+    <img src="logo2.png" width="200" height="150" alt="ArtSite Logo" id="logo">
+    <div class="moon"></div>
+<div class="stars">
     <span></span>
     <span></span>
     <span></span>
 </div>
-<header>
-    <img src="logo2.png" width="200" height="150" alt="ArtSite Logo" id="logo">
-    <h1>ArtSite</h1>
+<h1>ArtSite</h1>
 </header>
 
 <nav>
@@ -35,121 +36,125 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     <h2>Welcome to ArtSite</h2>
 
 <section id="hero-gallery">
-    <div class="side left">
-        <img src="land3.png" onclick="openLightbox(this.src)">
-        <img src="land2.png" onclick="openLightbox(this.src)">
-    </div>
-
-    <div class="center">
-        <img src="main.jpg" width="500" height="200" onclick="openLightbox(this.src)">
-    </div>
-
-    <div class="side right">
-        <img src="drones.png" onclick="openLightbox(this.src)">
-        <img src="smoking.png" onclick="openLightbox(this.src)">
-    </div>
-</section>
-   
-
-    <h3>Popular Features (unordered list)</h3>
-    <ul>
-        <li>Browse curated art collections</li>
-        <li>Learn digital painting techniques</li>
-        <li>Watch artist tutorials</li>
-    </ul>
-
-    <h3>Top Tools for Artists (ordered list)</h3>
-    <ol>
-        <li>Graphic tablets</li>
-        <li>Digital brushes</li>
-        <li>Color-palette generators</li>
-    </ol>
-</section>
-
-<section id="table-section">
-    <h2>Recommended Art Software</h2>
-    <table>
-        <tr>
-            <th>Software</th>
-            <th>Type</th>
-            <th>Price</th>
-        </tr>
-        <tr>
-            <td>GIMP</td>
-            <td>Image Editing</td>
-            <td>Free</td>
-        </tr>
-        <tr>
-            <td>Krita</td>
-            <td>Digital Painting</td>
-            <td>Free</td>
-        </tr>
-        <tr>
-            <td>Adobe Photoshop</td>
-            <td>Professional Editing</td>
-            <td>Paid</td>
-        </tr>
-    </table>
-</section>
-
-
-<footer>
-    <footer>
-
-    <div class="social-links">
-        <a href="https://instagram.com/YOURUSERNAME" target="_blank">
-            <i class="fab fa-instagram"></i>
-        </a>
-
-        <a href="https://twitter.com/YOURUSERNAME" target="_blank">
-            <i class="fab fa-twitter"></i>
-        </a>
-
-        <a href="https://www.youtube.com/@delirious9882" target="_blank">
-            <i class="fab fa-youtube"></i>
-        </a>
-
-        <a href="https://www.tiktok.com/@doose.zoose" target="_blank">
-            <i class="fab fa-github"></i>
-        </a>
-    </div>
-
-    <p>© 2026 ArtSite | Portfolio</p>
-
-</footer>
-    
-<script>
-    const images = ["land1.jpg", "land2.png", "land3.png"];
-    let index = 0;
-    const slideshow = document.getElementById("slideshow");
-
-    setInterval(() => {
-        slideshow.style.opacity = 0;
-
-        setTimeout(() => {
-            index = (index + 1) % images.length;
-            slideshow.src = images[index];
-            slideshow.style.opacity = 1;
-        }, 400);
-
-    }, 3000);
-</script>
-<div id="lightbox" onclick="closeLightbox()">
+    <div class="side left" id="left-panel"></div>
+    <div class="center" id="center-panel"></div>
+    <div class="side right" id="right-panel"></div>
+<
+<div id="lightbox">
     <img id="lightbox-img">
 </div>
+
+
+    
 <script>
-function openLightbox(src) {
-    document.getElementById("lightbox").style.display = "flex";
-    document.getElementById("lightbox-img").src = src;
+const images = [
+    "space.png","land3.png","drones.png","smoking.png","land2.png",
+    "jane.png","lucy.png","greeet.png","main.jpg","golden.png","hi.png","aura.png",
+"city.png",
+];
+
+function getRandom(exclude) {
+    let img;
+    do {
+        img = images[Math.floor(Math.random() * images.length)];
+    } while (img === exclude);
+    return img;
+}
+
+function updatePanel(panelId, isSide = false) {
+    const panel = document.getElementById(panelId);
+
+    if (isSide) {
+        panel.innerHTML = `
+            <img src="${getRandom()}">
+            <img src="${getRandom()}">
+        `;
+    } else {
+        panel.innerHTML = `<img src="${getRandom()}">`;
+    }
+
+    panel.querySelectorAll("img").forEach(img => {
+        img.onclick = () => openLightbox(img);
+    });
+}
+
+function startPanels() {
+    updatePanel("left-panel", true);
+    updatePanel("center-panel");
+    updatePanel("right-panel", true);
+
+    setInterval(() => updatePanel("left-panel", true), 4000);
+    setInterval(() => updatePanel("center-panel"), 3000);
+    setInterval(() => updatePanel("right-panel", true), 4500);
+}
+
+startPanels();
+</script>
+<script>
+function openLightbox(img) {
+    const lightbox = document.getElementById("lightbox");
+    const lightImg = document.getElementById("lightbox-img");
+
+    const rect = img.getBoundingClientRect();
+
+    // set starting position
+    lightImg.src = img.src;
+    lightImg.style.position = "absolute";
+    lightImg.style.top = rect.top + "px";
+    lightImg.style.left = rect.left + "px";
+    lightImg.style.width = rect.width + "px";
+    lightImg.style.height = rect.height + "px";
+
+    lightbox.style.display = "flex";
+
+    // trigger animation
+    requestAnimationFrame(() => {
+        lightImg.style.transition = "all 0.4s ease";
+        lightImg.style.top = "50%";
+        lightImg.style.left = "50%";
+        lightImg.style.transform = "translate(-50%, -50%)";
+        lightImg.style.width = "90vw";
+        lightImg.style.height = "90vh";
+    });
 }
 
 function closeLightbox() {
-    document.getElementById("lightbox").style.display = "none";
+    const lightbox = document.getElementById("lightbox");
+    const lightImg = document.getElementById("lightbox-img");
+
+    lightImg.style.transition = "all 0.3s ease";
+    lightImg.style.opacity = "0";
+
+    setTimeout(() => {
+        lightbox.style.display = "none";
+        lightImg.removeAttribute("style");
+    }, 300);
 }
+
+document.getElementById("lightbox").addEventListener("click", closeLightbox);
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("fade-in");
 
-</body>
-</html>
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function(e) {
 
+            // ignore external links
+            if (this.target === "_blank") return;
+
+            e.preventDefault();
+            const url = this.href;
+
+            document.body.classList.remove("fade-in");
+            document.body.classList.add("fade-out");
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 400); // matches CSS time
+        });
+    });
+});
+</script>
 </body>
 </html>
