@@ -6,15 +6,16 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<div class="moon"></div>
+
+<header>
+    <img src="logo2.png" width="200" height="150" alt="ArtSite Logo" id="logo">
+     <div class="moon"></div>
 <div class="shooting-stars">
     <span></span>
     <span></span>
     <span></span>
-</div>
-<header>
-    <img src="logo2.png" width="200" height="150" alt="ArtSite Logo" id="logo">
-      <h1>About the Designer</h1>
+</div> 
+<h1>About the Designer</h1>
 </header>
 
 <nav>
@@ -52,12 +53,75 @@
     </ul>
 </section>
 
+<div id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img">
+</div>
+
+    <h3>Popular Features (unordered list)</h3>
+    <ul>
+        <li>Browse curated art collections</li>
+        <li>Learn digital painting techniques</li>
+        <li>Watch artist tutorials</li>
+    </ul>
+
+    <h3>Top Tools for Artists (ordered list)</h3>
+    <ol>
+        <li>Graphic tablets</li>
+        <li>Digital brushes</li>
+        <li>Color-palette generators</li>
+    </ol>
+</section>
+
+<section id="table-section">
+    <h2>Recommended Art Software</h2>
+    <table>
+        <tr>
+            <th>Software</th>
+            <th>Type</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>GIMP</td>
+            <td>Image Editing</td>
+            <td>Free</td>
+        </tr>
+        <tr>
+            <td>Krita</td>
+            <td>Digital Painting</td>
+            <td>Free</td>
+        </tr>
+        <tr>
+            <td>Adobe Photoshop</td>
+            <td>Professional Editing</td>
+            <td>Paid</td>
+        </tr>
+    </table>
+</section>
 <footer>
     <p>© 2026 ArtSite Portfolio</p>
 </footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("fade-in");
 
-</body>
-</html>
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function(e) {
 
+            // ignore external links
+            if (this.target === "_blank") return;
+
+            e.preventDefault();
+            const url = this.href;
+
+            document.body.classList.remove("fade-in");
+            document.body.classList.add("fade-out");
+
+            setTimeout(() => {
+                window.location.href = url;
+            }, 400); // matches CSS time
+        });
+    });
+});
+</script>
 </body>
 </html>
